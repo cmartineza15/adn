@@ -20,8 +20,8 @@ public class MutantAdnIdentifierImpl implements AdnIdentifier {
 
     public Mono<Boolean> identifier(String[] adn) {
         return Mono.fromCallable(() -> {
-            List<List<Character>> partner = adnLexicalAnalyzer.execute(adn).block();
-            List<List<List<Character>>> list = patternTokenizer.execute(partner).collectList().block();
+            List<List<Character>> partner = adnLexicalAnalyzer.execute(adn).share().block();
+            List<List<List<Character>>> list = patternTokenizer.execute(partner).collectList().share().block();
             for (List<List<Character>> lists : list) {
                 if (this.patternValidator.isValid(lists)) {
                     return true;
