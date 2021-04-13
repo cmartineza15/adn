@@ -5,12 +5,10 @@ import co.xmen.detector.domain.entity.Stat;
 import co.xmen.detector.domain.repository.ResumeStatRepository;
 import co.xmen.detector.domain.repository.StatRepository;
 import co.xmen.detector.service.StatService;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
