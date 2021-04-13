@@ -57,11 +57,6 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct-jdk8</artifactId>
-			<version>${org.mapstruct.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${io.springfox.swagger.version}</version>
@@ -127,11 +122,6 @@
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 							<version>${lombok.version}</version>
-						</path>
-						<path>
-							<groupId>org.mapstruct</groupId>
-							<artifactId>mapstruct-processor</artifactId>
-							<version>${org.mapstruct.version}</version>
 						</path>
 					</annotationProcessorPaths>
 					<compilerArgs>
