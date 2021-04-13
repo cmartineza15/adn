@@ -1,0 +1,10 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://adn.c0xgag2xsifx.us-west-2.rds.amazonaws.com:5432/adn
+    username: cmartin
+    password: HolaMundo123
+    initialization-mode: always
+
+logging:
+  level:
+    web: DEBUG

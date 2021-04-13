@@ -1,8 +1,9 @@
 spring:
   r2dbc:
-    url: r2dbc:postgresql://172.17.0.2:5432/postgres
+    url: r2dbc:postgresql://localhost:5432/adn
     username: postgres
     password: admin
+    initialization-mode: always
 
 logging:
   level:

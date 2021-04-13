@@ -3,7 +3,6 @@ package co.xmen.detector.business.analyzer.mutant;
 import co.xmen.detector.business.analyzer.pattern.PatternDiagonalsCaseImpl;
 import co.xmen.detector.business.analyzer.pattern.PatternHVCaseImpl;
 import co.xmen.detector.config.AdnConfig;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +12,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import reactor.test.StepVerifier;
 
 @SpringBootTest
-@Import({PatternDiagonalsCaseImpl.class, PatternHVCaseImpl.class, AdnConfig.class,MutantPatternTokenizerImpl.class,
-        MutantAdnIdentifierImpl.class,MutantAdnLexicalAnalyzerImpl.class,MutantAdnIdentifierImpl.class,
-        MutantPatternValidatorImpl.class})
-class MutantAdnIdentifierImplTest {
+@ExtendWith(SpringExtension.class)
+@Import({PatternDiagonalsCaseImpl.class, PatternHVCaseImpl.class, AdnConfig.class,MutantPatternTokenizerImpl.class,MutantAdnIdentifierImpl.class,MutantAdnLexicalAnalyzerImpl.class,MutantAdnIdentifierImpl.class,MutantPatternValidatorImpl.class})
+public class MutantAdnIdentifierImplTest {
 
 
     @Autowired
@@ -25,7 +23,7 @@ class MutantAdnIdentifierImplTest {
 
     @Test
     void identifierIsMutant() {
-        String[] adn = {"ATCGAA", "ATCGAA", "ATCGAA", "ATCGAA", "ATCGAA", "ATCGAA"};
+            String[] adn = {"ATCGAA", "ATCGAA", "ATCGAA", "ATCGAA", "ATCGAA", "ATCGAA"};
         StepVerifier.create(mutantAdnIdentifier.identifier(adn))
                 .expectNext(true)
                 .verifyComplete();
