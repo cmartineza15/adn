@@ -17,6 +17,8 @@ Ejemplo: ["ATCGAA", "ATCGAA", "ATCGAA", "ATCGAA", "ATCGAA", "ATCGAA"]
 - Junit
 - Mockito
 - r2dbc (Postgres)
+- Spring Fox
+- Swagger api
 
 ## ¿Que debemos tener antes de empezar?
 
@@ -102,4 +104,5 @@ Respuesta del servicio:
 Puedes consumir el api, en la siguiente url:
 
 ```
- http://mutant-env.eba-xrgestqi.us-west-2.elasticbeanstalk.com
+ http://mutant-env.eba-xrgestqi.us-west-2.elasticbeanstalk.com/swagger-ui/index.html
+```

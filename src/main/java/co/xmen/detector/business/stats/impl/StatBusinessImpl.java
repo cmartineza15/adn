@@ -42,14 +42,12 @@ public class StatBusinessImpl implements StatConsultBusiness, StatReloadBusiness
 
         return statService.findById(new Stat(StatType.MUTANTS.id()))
                 .switchIfEmpty(resumeStatMono)
-                .flatMap(
-                bdStat ->{
-                    Stat stat = resumeStatMono.share().block();
+                .flatMap(bdStat -> resumeStatMono.flatMap(stat -> {
                     bdStat.setCount_mutant_dna(stat.getCount_mutant_dna());
                     bdStat.setRatio(stat.getRatio());
                     bdStat.setCount_humna_dna(stat.getCount_humna_dna());
                     return statService.save(bdStat);
-                }
+                })
         );
     }
 

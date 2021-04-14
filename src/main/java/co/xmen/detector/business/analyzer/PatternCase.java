@@ -1,5 +1,6 @@
 package co.xmen.detector.business.analyzer;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -15,5 +16,5 @@ public interface PatternCase {
      * @param matrixAdn Matriz valida de adn procesada
      * @return List<Character> cadena de ADN aislado asociado a los patrones.
      */
-    Mono<List<List<Character>>> separate(List<List<Character>> matrixAdn, Integer minVal);
+    Flux<List<Character>> separate(List<List<Character>> matrixAdn, Integer minVal);
 }

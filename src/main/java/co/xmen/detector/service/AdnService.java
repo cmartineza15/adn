@@ -3,6 +3,11 @@ package co.xmen.detector.service;
 import co.xmen.detector.domain.entity.Adn;
 import reactor.core.publisher.Mono;
 
+/**
+ * Servicio de datos de ADN
+ * @author camilo martinez
+ * @version 13/04/2021
+ */
 public interface AdnService {
     /**
      * Guarda adn.

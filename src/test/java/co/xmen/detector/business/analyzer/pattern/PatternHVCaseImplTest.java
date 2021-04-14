@@ -44,7 +44,7 @@ class PatternHVCaseImplTest {
         columnsAndRows.add("ATCGAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
         columnsAndRows.add("AAAAAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
 
-        StepVerifier.create(patternHVCase.separate(matrixAdn,adnConfig.getMutantSucces()).log())
+        StepVerifier.create(patternHVCase.separate(matrixAdn,adnConfig.getMutantSucces()).log().collectList())
                 .expectNextMatches( matrix -> {
                     for (int i = 0; i < matrix.size(); i++) {
                         List<Character> row = matrix.get(i);
