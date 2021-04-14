@@ -32,8 +32,8 @@ public class MutantPatternTokenizerImpl implements PatternTokenizer {
      * @return List<Character> Lista procesada del ADN asociado.
      */
     @Override
-    public Flux<List<List<Character>>> execute(List<List<Character>> matrixAdn) {
-        return Flux.merge(diagonals.separate(matrixAdn,adnConfig.getMutantSucces()),
+    public Flux<List<Character>> execute(List<List<Character>> matrixAdn) {
+        return Flux.concat(diagonals.separate(matrixAdn,adnConfig.getMutantSucces()),
                 columnsRows.separate(matrixAdn,adnConfig.getMutantSucces()));
 
     }

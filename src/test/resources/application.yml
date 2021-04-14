@@ -1,0 +1,10 @@
+app:
+  adn:
+    pattern: "[ATCG]+"
+    size: 6
+    mutantSucces: 4
+
+spring:
+  r2dbc:
+    url: r2dbc:h2:mem:///testdb
+    name: sa

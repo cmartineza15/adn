@@ -3,7 +3,8 @@ spring:
     url: r2dbc:postgresql://localhost:5432/adn
     username: postgres
     password: admin
-    initialization-mode: always
+
+
 
 logging:
   level:

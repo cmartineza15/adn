@@ -18,5 +18,5 @@ public interface PatternTokenizer {
      * @param matrixAdn Matriz de adn valida
      * @return List<Character> Valores de adn asociados a los patrones del caso especifico.
      */
-    Flux<List<List<Character>>> execute(List<List<Character>> matrixAdn);
+    Flux<List<Character>> execute(List<List<Character>> matrixAdn);
 }
