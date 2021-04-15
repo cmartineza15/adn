@@ -18,6 +18,7 @@ class MutantPatternValidatorImplTest {
         adnConfig.setMutantSucces(4);
         adnConfig.setSize(6);
         adnConfig.setPattern("[ATCG]+");
+        adnConfig.setMutantOccur(2);
         mutantPatternValidator = new MutantPatternValidatorImpl(adnConfig);
     }
 
@@ -37,7 +38,7 @@ class MutantPatternValidatorImplTest {
         patternAdn.add("ACCGAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
         patternAdn.add("TGCTA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
         patternAdn.add("CAAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        patternAdn.add("GGGC".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+        patternAdn.add("GGGG".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
         patternAdn.add("AACTA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
         patternAdn.add("TTCCTA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
         patternAdn.add("CAGCT".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));

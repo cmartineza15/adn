@@ -3,7 +3,7 @@ app:
     pattern: "[ATCG]+"
     size: 6
     mutantSucces: 4
-
+    mutantOccur: 2
 spring:
   r2dbc:
     url: r2dbc:h2:mem:///testdb

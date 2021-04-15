@@ -16,7 +16,7 @@ public class MutantPatternValidatorImpl implements PatternValidator {
     @Override
     public boolean isValid(List<List<Character>> adnPattern) {
         int repeat = adnConfig.getMutantSucces() - 1;
-        int cont = 0, errors;
+        int cont = 0, errors = 0, occur = 0;
         for (List<Character> characters : adnPattern) {
             Character prev = '-';
             cont = 0;
@@ -33,9 +33,10 @@ public class MutantPatternValidatorImpl implements PatternValidator {
                 prev = characters.get(i);
             }
             if (cont == repeat) {
-                break;
+                occur++;
+                if(occur == adnConfig.getMutantOccur()) break;
             }
         }
-        return cont == repeat;
+        return occur == adnConfig.getMutantOccur();
     }
 }

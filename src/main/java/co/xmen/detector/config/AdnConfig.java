@@ -11,4 +11,5 @@ public class AdnConfig {
     private String pattern;
     private int size;
     private int mutantSucces;
+    private int mutantOccur;
 }
