@@ -53,21 +53,7 @@ class MutantAdnLexicalAnalyzerImplTest {
         .verifyComplete();
     }
 
-    /**
-     * error en el tamaño del array
-     */
-    @Test
-    void executeErrorLengthAdn() {
-        String[] adn = {"ATCGAA","ATCGAA","ATCGAA","ATCGAA","ATCGAA","ATCGAA","ATCGAA"};
-        List<List<Character>> lists = new ArrayList<>();
-        for (String andPart : adn) {
-            lists.add(andPart.chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        }
 
-        StepVerifier.create(mutantAdnLexicalAnalyzer.execute(adn))
-                .expectErrorMessage( "Tamaño de la cadena erroneo")
-                .verify();
-    }
 
     /**
      * error en el tanaño de un String dentro del array.

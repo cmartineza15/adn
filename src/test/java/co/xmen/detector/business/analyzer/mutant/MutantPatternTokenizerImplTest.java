@@ -6,11 +6,8 @@ import co.xmen.detector.config.AdnConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -22,27 +19,22 @@ import java.util.stream.Collectors;
 
 
 @ActiveProfiles("test")
+@SpringBootTest
 @ExtendWith(SpringExtension.class)
 @Import({PatternDiagonalsCaseImpl.class, PatternHVCaseImpl.class,AdnConfig.class,MutantPatternTokenizerImpl.class})
 class MutantPatternTokenizerImplTest {
 
     @Autowired
     private MutantPatternTokenizerImpl mutantAdnLexicalAnalyzer;
-    @Mock
-    AdnConfig adnConfig;
+
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+
     }
 
     @Test
     void execute() {
-        Mockito.when(adnConfig.getSize()).thenReturn(6);
-        Mockito.when(adnConfig.getMutantSucces()).thenReturn(4);
-        Mockito.when(adnConfig.getPattern()).thenReturn("[ATCG]+");
-
-
         String[] adn = {"ATCGAA", "ATCGAA", "ATCGAA", "ATCGAA", "ATCGAA", "ATCGAA"};
         List<List<Character>> matrixAdn = new ArrayList<>();
         for (String andPart : adn) {
@@ -50,6 +42,16 @@ class MutantPatternTokenizerImplTest {
         }
 
         List<List<Character>> diagonals = new ArrayList<>();
+        diagonals.add("TCGAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+        diagonals.add("ATCGA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+        diagonals.add("AGCTA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+        diagonals.add("AAGCT".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+        diagonals.add("CGAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+        diagonals.add("ATCG".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+        diagonals.add("GCTA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+        diagonals.add("AAGC".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+        diagonals.add("ATCGAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+        diagonals.add("AAGCTA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
         diagonals.add("ATCGAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
         diagonals.add("AAAAAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
         diagonals.add("ATCGAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
@@ -62,18 +64,7 @@ class MutantPatternTokenizerImplTest {
         diagonals.add("AAAAAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
         diagonals.add("ATCGAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
         diagonals.add("AAAAAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        diagonals.add("ATCGAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        diagonals.add("AAAAAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        diagonals.add("ATCGAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        diagonals.add("TTTTTT".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        diagonals.add("ATCGAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        diagonals.add("CCCCCC".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        diagonals.add("ATCGAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        diagonals.add("GGGGGG".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        diagonals.add("ATCGAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        diagonals.add("AAAAAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        diagonals.add("ATCGAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        diagonals.add("AAAAAA".chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+
 
         StepVerifier.create(mutantAdnLexicalAnalyzer.execute(matrixAdn).collectList())
                 .expectNextMatches(listaResultado -> this.validarLista(listaResultado, diagonals))

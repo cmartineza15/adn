@@ -44,6 +44,86 @@ class AdnAnalyzerControllerImplTest {
     }
 
     @Test
+    void validateMutant1Fail() {
+        String [] dna = {"A"};
+        webTestClient
+                .post()
+                .uri("/mutant")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .body(Mono.just(AdnRequest.builder()
+                        .dna(dna)
+                        .build()),AdnRequest.class
+                ).exchange()
+                .expectStatus()
+                .isForbidden();
+    }
+
+    @Test
+    void validateMutant8Ok() {
+        String [] dna = {"ATGCGAAA","CAGTGCCC","TTATGTGG","AGAAGGGG","CCCCTAGG","TCACTGGG","TCACTGGG","TCACTGGG"};
+        webTestClient
+                .post()
+                .uri("/mutant")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .body(Mono.just(AdnRequest.builder()
+                        .dna(dna)
+                        .build()),AdnRequest.class
+                ).exchange()
+                .expectStatus()
+                .isOk();
+    }
+
+    @Test
+    void validateMutant8Fail() {
+        String [] dna = {"TGCGATAA","CACGAAGA","GCATGCCT","GCATGCCT","CTCGAAAA","ATTGAGCA","TAATAGAA","GACAGAAC"};
+        webTestClient
+                .post()
+                .uri("/mutant")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .body(Mono.just(AdnRequest.builder()
+                        .dna(dna)
+                        .build()),AdnRequest.class
+                ).exchange()
+                .expectStatus()
+                .isForbidden();
+    }
+
+    @Test
+    void validateMutant4Ok() {
+        String [] dna = {"AAAA","CAGA","TTAA","AGAA"};
+        webTestClient
+                .post()
+                .uri("/mutant")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .body(Mono.just(AdnRequest.builder()
+                        .dna(dna)
+                        .build()),AdnRequest.class
+                ).exchange()
+                .expectStatus()
+                .isOk();
+    }
+
+    @Test
+    void validateMutant3NOK() {
+        String [] dna = {"ATG","CAG","TTA"};
+        webTestClient
+                .post()
+                .uri("/mutant")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .body(Mono.just(AdnRequest.builder()
+                        .dna(dna)
+                        .build()),AdnRequest.class
+                ).exchange()
+                .expectStatus()
+                .isForbidden();
+    }
+
+    @Test
     void validateHumanOk() {
         String [] dna ={"ATCGAT", "TCGATC", "AGCCAT", "CTCGTA", "ATCGAA", "ATAGAA"};
         webTestClient

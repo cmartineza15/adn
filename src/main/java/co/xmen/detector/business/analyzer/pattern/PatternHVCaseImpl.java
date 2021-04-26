@@ -28,7 +28,7 @@ public class PatternHVCaseImpl implements PatternCase {
     @Override
     public Flux<List<Character>> separate(List<List<Character>> matrixAdn, Integer minValue) {
         List<List<Character>> response = new LinkedList<>();
-        int iterat = adnConfig.getSize() - minValue;
+        int iterat = matrixAdn.size() - minValue;
         for (int i = 0; i < matrixAdn.size(); i++) {
             List<Character> vertical = new LinkedList<>();
             List<Character> horizontal = new LinkedList<>();

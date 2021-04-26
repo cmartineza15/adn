@@ -21,12 +21,9 @@ public class MutantAdnLexicalAnalyzerImpl implements AdnLexicalAnalyzer {
     @Override
     public Mono<List<List<Character>>> execute(String[] adn) {
         return Mono.fromCallable(() ->{
-            if (adnConfig.getSize() != adn.length) {
-                throw new ProcessException("Tamaño de la cadena erroneo");
-            }
             List<List<Character>> list = new ArrayList<>();
             for (String partAdn : adn) {
-                if (adnConfig.getSize() != partAdn.length()) {
+                if (adn.length != partAdn.length()) {
                     throw new ProcessException("Tamaño erroneo en la cadena: " + partAdn);
                 }
 

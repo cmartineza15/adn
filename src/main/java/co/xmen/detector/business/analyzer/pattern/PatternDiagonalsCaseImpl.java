@@ -27,8 +27,8 @@ public class PatternDiagonalsCaseImpl implements PatternCase {
     @Override
     public Flux<List<Character>> separate(List<List<Character>> matrixAdn, Integer minVal) {
         List<List<Character>> list = new ArrayList<>();
-        int maxIter = adnConfig.getSize() - minVal;
-        int size = adnConfig.getSize();
+        int maxIter = matrixAdn.size() - minVal;
+        int size = matrixAdn.size();
         for (int i = 0; i < maxIter; i++) {
             int k = 0;
             List<Character> diagT = new ArrayList<>();
